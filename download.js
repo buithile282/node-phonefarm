@@ -1,5 +1,6 @@
 const Downloader = require("nodejs-file-downloader");
 var AdmZip = require("adm-zip");
+const path = require('path');
 //const fs=require('fs');
 module.exports.DownloadFile = async function (url, pathSave, fileName, mainWindow, eventName) {
   // if(fs.existsSync(`${pathSave}\\${fileName}`)){
@@ -21,9 +22,9 @@ module.exports.DownloadFile = async function (url, pathSave, fileName, mainWindo
       if (percentage * 1 == 100) {
         if (getExtension(fileName) == ".zip") {
           setTimeout(() => {
-            const zip = new AdmZip(`${pathSave}\\${fileName}`);
+            const zip = new AdmZip(path.join(pathSave, fileName));
             zip.extractAllTo(pathSave, true);
-            // setTimeout(()=>{fs.unlinkSync(`${pathSave}\\${fileName}`)},5000) 
+            // setTimeout(()=>{fs.unlinkSync(path.join(pathSave, fileName))},5000) 
           }, 1000)
         }
 
