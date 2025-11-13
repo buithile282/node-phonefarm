@@ -15,10 +15,10 @@ const { HttpsProxyAgent } = require('https-proxy-agent');
 const { SocksProxyAgent } = require('socks-proxy-agent');
 const fetch = require('node-fetch');
 
-const pathWeb = path.join(process.resourcesPath, "..\\bin\\build");
+const pathWeb = path.join(process.resourcesPath, "..", "bin", "build");
 const pathPreload = path.join(__dirname, 'preload.js');
 const osPaths = require('os-paths/cjs');
-const pathRoot = osPaths.home() + "\\.gemFamer";
+const pathRoot = path.join(osPaths.home(), ".gemFamer");
 let download = require('./download');
 const { Sequelize, where, Op } = require('sequelize');
 const sequelize = require('./configs/database');
@@ -244,7 +244,7 @@ async function createWindow() {
       deviceValid = await license.checkLicense(data);
       return deviceValid;
     } catch (error) {
-      writelog(error);
+      console.error('checkLicense error:', error);
       return { success: false, message: error.toString() };
     }
   });
@@ -287,7 +287,7 @@ function runServer() {
   appExpress.use(bodyParser.json());
   appExpress.use(express.static(path.join(__dirname, 'inspector')));
   appExpress.get('', (req, res) => {
-    res.sendFile(path.join(__dirname, 'inspector\\index.html'))
+    res.sendFile(path.join(__dirname, 'inspector', 'index.html'))
   });
   appExpress.get('/devices', async function (req, res) {
     let result = await client.listDevices();
@@ -395,7 +395,7 @@ function trackDevice() {
         };
         setTimeout(async () => {
           const port = await checkAndInstallApks(device.id, pathRoot);
-          await checkAndInstallAtxAgent(device.id, pathRoot + "//app//atx-agent");
+          await checkAndInstallAtxAgent(device.id, path.join(pathRoot, "app", "atx-agent"));
           let p = listDevice.find(c => c.device_id == device.id);
           if (!p) {
             listDevice.push({ device_id: device.id, port });
