@@ -15,10 +15,10 @@ const { HttpsProxyAgent } = require('https-proxy-agent');
 const { SocksProxyAgent } = require('socks-proxy-agent');
 const fetch = require('node-fetch');
 
-const pathWeb = path.join(process.resourcesPath, "..\\bin\\build");
+const pathWeb = path.join(process.resourcesPath, "..", "bin", "build");
 const pathPreload = path.join(__dirname, 'preload.js');
 const osPaths = require('os-paths/cjs');
-const pathRoot = osPaths.home() + "\\.gemFamer";
+const pathRoot = path.join(osPaths.home(), ".gemFamer");
 let download = require('./download');
 const { Sequelize, where, Op } = require('sequelize');
 const sequelize = require('./configs/database');

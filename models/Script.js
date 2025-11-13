@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../configs/database');
 const Scripts = sequelize.define('apps', {
     id: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         allowNull: true,
         primaryKey: true
     },

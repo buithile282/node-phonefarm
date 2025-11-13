@@ -1,6 +1,7 @@
 const adb = require('adbkit');
 const client = adb.createClient();
 const net = require('net');
+const path = require('path');
 
 
 // Hàm kiểm tra xem cổng có đang được sử dụng hay không
@@ -82,12 +83,12 @@ async function checkAndInstallApks(deviceId, pathRoot) {
         const uiautomatorAppInstalled = await client.isInstalled(deviceId, 'com.github.uiautomator');
         console.log(uiautomatorAppInstalled)
         if (!uiautomatorAppInstalled) {
-            await client.install(deviceId, pathRoot + '//app//app-uiautomator.apk');
+            await client.install(deviceId, path.join(pathRoot, 'app', 'app-uiautomator.apk'));
         }
         const uiautomatorTestAppInstalled = await client.isInstalled(deviceId, 'com.github.uiautomator.test');
         console.log(uiautomatorTestAppInstalled)
         if (!uiautomatorTestAppInstalled) {
-            await client.install(deviceId, pathRoot + '//app//app-uiautomator-test.apk');
+            await client.install(deviceId, path.join(pathRoot, 'app', 'app-uiautomator-test.apk'));
         };
         await client.shell(deviceId,'forward --remove-all');
         let port;
