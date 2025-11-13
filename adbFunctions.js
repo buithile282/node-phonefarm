@@ -1,6 +1,6 @@
 const fs = require('fs');
 const xpath = require('xpath');
-const { DOMParser } = require('xmldom');
+const { DOMParser } = require('@xmldom/xmldom');
 const Jimp = require('jimp');
 const { createBuffer, getBufferData } = require('./createMessage');
 const path = require('path');
