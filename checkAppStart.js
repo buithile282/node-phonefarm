@@ -78,16 +78,17 @@ async function checkAndInstallAtxAgent(deviceId, pathFile) {
 
 async function checkAndInstallApks(deviceId, pathRoot) {
     try {
+        const path = require('path');
         // Kiểm tra app-uiautomator.apk
         const uiautomatorAppInstalled = await client.isInstalled(deviceId, 'com.github.uiautomator');
         console.log(uiautomatorAppInstalled)
         if (!uiautomatorAppInstalled) {
-            await client.install(deviceId, pathRoot + '//app//app-uiautomator.apk');
+            await client.install(deviceId, path.join(pathRoot, 'app', 'app-uiautomator.apk'));
         }
         const uiautomatorTestAppInstalled = await client.isInstalled(deviceId, 'com.github.uiautomator.test');
         console.log(uiautomatorTestAppInstalled)
         if (!uiautomatorTestAppInstalled) {
-            await client.install(deviceId, pathRoot + '//app//app-uiautomator-test.apk');
+            await client.install(deviceId, path.join(pathRoot, 'app', 'app-uiautomator-test.apk'));
         };
         await client.shell(deviceId,'forward --remove-all');
         let port;

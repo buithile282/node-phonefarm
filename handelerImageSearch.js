@@ -1,5 +1,6 @@
 const { exec, spawn } = require('child_process');
 const fs = require('fs');
+const fetch = require('node-fetch');
 const {screenShot,touch}=require('./adbFunctions');
 module.exports.handlerImageSearch = async (port, data, pathRoot) => {
     try {
@@ -37,7 +38,7 @@ module.exports.handlerImageSearch = async (port, data, pathRoot) => {
         if (result.data.nine_point.length > 0) {
             let point = { X: 0, Y: 0 };
             let length = result.data.nine_point[0].length;
-            for (i = 0; i < length; i++) {
+            for (let i = 0; i < length; i++) {
                 point.X = point.X + result.data.nine_point[0][i][0];
                 point.Y = point.Y + result.data.nine_point[0][i][1];
             }
