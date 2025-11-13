@@ -1,5 +1,6 @@
 const { exec, spawn } = require('child_process');
 const fs = require('fs');
+const fetch = require('node-fetch');
 const {screenShot,touch}=require('./adbFunctions');
 module.exports.handlerImageSearch = async (port, data, pathRoot) => {
     try {
