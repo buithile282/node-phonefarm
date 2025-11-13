@@ -6,6 +6,7 @@
   "author": "GemLogin.App",
   "dependencies": {
     "@dead50f7/adbkit": "^2.11.5",
+    "@xmldom/xmldom": "^0.8.11",
     "adbkit": "^2.11.1",
     "adm-zip": "^0.5.14",
     "apkpure-crawler": "^1.0.1",
@@ -46,7 +47,6 @@
     "xlsx-populate": "^1.21.0",
     "xml2js": "^0.6.2",
     "xml2js-xpath": "^0.13.0",
-    "xmldom": "^0.6.0",
     "xpath": "^0.0.34",
     "yaku": "^1.0.1",
     "yaml": "^2.5.1"
